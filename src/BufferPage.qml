@@ -175,7 +175,6 @@ Item {
                                 TextField {
                                     Layout.fillWidth: true
                                     text: row.stockText
-                                    placeholderText: "—"
                                     selectByMouse: true
                                     inputMethodHints: Qt.ImhFormattedNumbersOnly
                                     Material.roundedScale: theme.radius
@@ -237,7 +236,11 @@ Item {
 
         RowLayout {
             Layout.fillWidth: true
-            Layout.preferredHeight: 240
+            // A layout takes fillHeight from its children; this row keeps a
+            // fixed height so the table gets the rest.
+            Layout.fillHeight: false
+            Layout.preferredHeight: 230
+            Layout.maximumHeight: 230
             spacing: 14
 
             ScrollView {
@@ -259,7 +262,7 @@ Item {
                 Layout.fillHeight: true
                 result: page.result
                 caption: page.result.ok ? qsTr("Water") : ""
-                headline: page.result.ok ? qsTr("to %1").arg(volume.text + " " + volume.unit) : ""
+                headline: page.result.ok ? qsTr("to %1").arg(page.result.volume) : ""
                 onCopyRequested: page.copyRequested()
                 onCardRequested: page.cardRequested()
 

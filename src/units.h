@@ -60,6 +60,11 @@ std::optional<double> parseNumber(const QString &text, const QLocale &locale = Q
 // Rounds to significant figures and keeps the trailing zeros that say how
 // precise the number is: 5 at three figures is 5.00.
 QString formatNumber(double value, int significantFigures, const QLocale &locale = QLocale());
+// Rounded to significant figures but without padding zeros: a dilution of
+// 1:10 isn't 1:10.0.
+QString formatCompact(double value, int significantFigures, const QLocale &locale = QLocale());
+// Strips floating point noise (4.4999999999 to 4.5) for machine output.
+double clean(double value);
 QString format(const Quantity &quantity, int significantFigures, const QLocale &locale = QLocale());
 // In the dimension's best unit.
 QString formatBase(double base, Dimension dimension, int significantFigures, const QLocale &locale = QLocale());

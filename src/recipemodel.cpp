@@ -183,6 +183,12 @@ void RecipeModel::setField(int index, const QString &field, const QString &value
     if (!member || m_draft.rows[index].*member == value)
         return;
     edit(QString("%1/%2").arg(index).arg(field), [&] { m_draft.rows[index].*member = value; });
+    // The view may not be what changed it (undo of a coalesced edit, a
+    // script), so the cell hears about it too.
+    static const QHash<QString, int> roles{{"name", NameRole},           {"mw", MwRole},
+                                           {"finalText", FinalTextRole}, {"finalUnit", FinalUnitRole},
+                                           {"stockText", StockTextRole}, {"stockUnit", StockUnitRole}};
+    emit dataChanged(this->index(index), this->index(index), {roles.value(field)});
 }
 
 void RecipeModel::addComponent() {
@@ -361,6 +367,7 @@ void RecipeModel::recompute() {
                              .toVariant();
         result["main"] = copy.join('\n');
         result["water"] = Units::format(plan.water, figures);
+        result["volume"] = volume;
         result["sentence"] = tr("Add the solids and liquids, then bring to %1 with water.").arg(volume);
         result["summary"] =
             tr("%1, %2: %n components", nullptr, recipe.components.size()).arg(title, volume);

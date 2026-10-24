@@ -253,6 +253,16 @@ QString formatNumber(double value, int figures, const QLocale &locale) {
     return plain.toString(rounded, 'f', decimals);
 }
 
+QString formatCompact(double value, int figures, const QLocale &locale) {
+    if (!std::isfinite(value))
+        return QStringLiteral("–");
+    QLocale plain = locale;
+    plain.setNumberOptions(QLocale::OmitGroupSeparator);
+    return plain.toString(roundSignificant(value, figures), 'f', QLocale::FloatingPointShortest);
+}
+
+double clean(double value) { return roundSignificant(value, 12); }
+
 QString format(const Quantity &quantity, int figures, const QLocale &locale) {
     return formatNumber(quantity.value, figures, locale) + QChar(' ') + quantity.unit.symbol;
 }

@@ -67,7 +67,7 @@ struct Command {
 };
 
 QJsonObject json(const Quantity &quantity, int figures) {
-    return {{"value", quantity.value},
+    return {{"value", Units::clean(quantity.value)},
             {"unit", quantity.unit.symbol},
             {"text", Units::format(quantity, figures)}};
 }
@@ -245,7 +245,7 @@ int serial(const QStringList &arguments) {
         QJsonArray tubes;
         for (const auto &tube : plan.tubes)
             tubes << QJsonObject{{"tube", tube.index},
-                                 {"fold", tube.fold},
+                                 {"fold", Units::clean(tube.fold)},
                                  {"concentration", json(tube.concentration, figures)},
                                  {"diluent", json(tube.diluent, figures)},
                                  {"transfer", json(tube.transfer, figures)},
@@ -261,7 +261,7 @@ int serial(const QStringList &arguments) {
     for (const auto &tube : plan.tubes)
         print(stdout, QString("%1\t%2\t1:%3\t%4\t%5\t%6")
                           .arg(tube.index)
-                          .arg(text(tube.concentration), Units::formatNumber(tube.fold, figures), text(tube.diluent),
+                          .arg(text(tube.concentration), Units::formatCompact(tube.fold, figures), text(tube.diluent),
                                text(tube.transfer), text(tube.finalVolume)));
     print(stdout, QString("Stock needed: %1, diluent in all: %2").arg(text(plan.stockNeeded), text(plan.totalDiluent)));
     return 0;

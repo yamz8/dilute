@@ -269,7 +269,7 @@ QVariantMap Backend::serial(const QVariantMap &inputs) const {
     QStringList tsv{QStringList{tr("Tube"), tr("Concentration"), tr("Dilution"), tr("Diluent"), tr("Transfer"),
                                 tr("Final volume")}.join('\t')};
     for (const auto &tube : plan.tubes) {
-        const QString fold = "1:" + Units::formatNumber(tube.fold, figures);
+        const QString fold = "1:" + Units::formatCompact(tube.fold, figures);
         rows << QVariantMap{{"tube", QLocale().toString(tube.index)},
                             {"concentration", text(tube.concentration)},
                             {"fold", fold},
@@ -290,8 +290,8 @@ QVariantMap Backend::serial(const QVariantMap &inputs) const {
                             .arg(text(plan.stockNeeded), text(plan.totalDiluent));
     result["main"] = tsv.join('\n');
     result["summary"] = tr("Serial 1:%1 from %2, %n tubes", nullptr, plan.tubes.size())
-                            .arg(Units::formatNumber(*factor, figures), text(*start.quantity()));
-    result["card"] = Card{tr("Serial dilution 1:%1").arg(Units::formatNumber(*factor, figures)),
+                            .arg(Units::formatCompact(*factor, figures), text(*start.quantity()));
+    result["card"] = Card{tr("Serial dilution 1:%1").arg(Units::formatCompact(*factor, figures)),
                           today() + "  ·  " + tr("from %1").arg(text(*start.quantity())),
                           {tr("Tube"), tr("Dilution"), tr("Diluent"), tr("Concentration")},
                           cardRows,
