@@ -1,0 +1,19 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="Main.qml">Main.qml</file>
+        <file alias="QuantityField.qml">QuantityField.qml</file>
+        <file alias="ResultPanel.qml">ResultPanel.qml</file>
+        <file alias="DilutionPage.qml">DilutionPage.qml</file>
+        <file alias="MolarityPage.qml">MolarityPage.qml</file>
+        <file alias="SerialPage.qml">SerialPage.qml</file>
+        <file alias="BufferPage.qml">BufferPage.qml</file>
+        <file alias="ReagentEditor.qml">ReagentEditor.qml</file>
+        <file alias="HistoryPanel.qml">HistoryPanel.qml</file>
+        <file alias="HelpOverlay.qml">HelpOverlay.qml</file>
+        <file alias="ExportSheet.qml">ExportSheet.qml</file>
+        <file alias="skill.md">skill.md</file>
+        <file alias="i18n/en.json">i18n/en.json</file>
+        <file alias="i18n/da.json">i18n/da.json</file>
+        <file alias="i18n/de.json">i18n/de.json</file>
+    </qresource>
+</RCC>
