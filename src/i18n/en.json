@@ -1,1 +1,14 @@
-{}
+{
+  "%1, %2: %n components": {
+    "one": "%1, %2: %n component",
+    "other": "%1, %2: %n components"
+  },
+  "Fill %n tubes with %1 of diluent, then move %2 down the series, mixing each time.": {
+    "one": "Fill %n tube with %1 of diluent, then move %2 into it from the stock and mix.",
+    "other": "Fill %n tubes with %1 of diluent, then move %2 down the series, mixing each time."
+  },
+  "Serial 1:%1 from %2, %n tubes": {
+    "one": "Serial 1:%1 from %2, %n tube",
+    "other": "Serial 1:%1 from %2, %n tubes"
+  }
+}
