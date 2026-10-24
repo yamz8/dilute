@@ -43,6 +43,7 @@ Item {
                 id: nameField
                 property bool acceptsSpace: true
                 Layout.preferredWidth: 260
+                Layout.minimumWidth: 160
                 placeholderText: qsTr("Recipe name")
                 text: recipe.name
                 selectByMouse: true
@@ -53,6 +54,7 @@ Item {
             QuantityField {
                 id: volume
                 Layout.preferredWidth: 240
+                Layout.minimumWidth: 200
                 label: qsTr("Final volume")
                 units: page.volumeUnits
                 text: recipe.volumeText

@@ -189,12 +189,8 @@ ApplicationWindow {
                 }
             }
 
-            RowLayout {
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-                spacing: 0
-
-                StackLayout {
+            StackLayout {
+                    id: stack
                     Layout.fillWidth: true
                     Layout.fillHeight: true
                     currentIndex: win.currentTab
@@ -221,14 +217,6 @@ ApplicationWindow {
                         onPresetRequested: (name) => win.guard(function() { recipe.loadPreset(name) })
                         onOpenRequested: win.openRecipe()
                     }
-                }
-
-                HistoryPanel {
-                    Layout.preferredWidth: 340
-                    Layout.fillHeight: true
-                    visible: win.historyVisible
-                    onPicked: (entry) => win.restoreHistory(entry)
-                }
             }
 
             Label {
@@ -241,6 +229,17 @@ ApplicationWindow {
                 font.pixelSize: 12
             }
         }
+    }
+
+    // Over the calculators rather than beside them, so the buffer table
+    // keeps its width.
+    HistoryPanel {
+        x: content.LayoutMirroring.enabled ? 0 : parent.width - width
+        y: 60
+        width: 340
+        height: stack.height
+        visible: win.historyVisible
+        onPicked: (entry) => win.restoreHistory(entry)
     }
 
     HelpOverlay {
