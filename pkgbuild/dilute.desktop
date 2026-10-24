@@ -1,0 +1,17 @@
+[Desktop Entry]
+Type=Application
+Name=Dilute
+Name[da]=Dilute
+Name[de]=Dilute
+Comment=Lab solution math: dilutions, molarity, serial dilutions and buffer recipes
+Comment[da]=Laboratorieberegninger: fortyndinger, molaritet, fortyndingsrækker og bufferopskrifter
+Comment[de]=Laborrechnen: Verdünnungen, Molarität, Verdünnungsreihen und Pufferrezepte
+Keywords=dilution;C1V1;molarity;buffer;serial;recipe;lab;PBS;concentration;
+Keywords[da]=fortynding;C1V1;molaritet;buffer;fortyndingsrække;opskrift;laboratorium;koncentration;
+Keywords[de]=Verdünnung;C1V1;Molarität;Puffer;Verdünnungsreihe;Rezept;Labor;Konzentration;
+Exec=dilute open %f
+Icon=dilute
+Terminal=false
+Categories=Science;Chemistry;Biology;
+MimeType=application/x-dilute;
+StartupWMClass=dilute

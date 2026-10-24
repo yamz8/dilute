@@ -1,0 +1,24 @@
+pkgname=dilute
+pkgver=0.1.0
+pkgrel=1
+pkgdesc='Lab solution math: dilutions, molarity, serial dilutions and buffer recipes'
+arch=('x86_64' 'aarch64')
+url='https://github.com/yamz8/dilute'
+license=('MIT')
+depends=('qt6-base' 'qt6-declarative' 'qt6-svg' 'qt6-wayland' 'xdg-desktop-portal')
+makedepends=('gcc' 'make')
+source=()
+sha256sums=()
+
+build() {
+  cd "$startdir/.."
+  ./bin/build
+}
+
+package() {
+  cd "$startdir/.."
+  install -Dm755 build/dilute "$pkgdir/usr/bin/dilute"
+  install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+  install -Dm644 "$startdir/dilute.svg" "$pkgdir/usr/share/icons/hicolor/scalable/apps/dilute.svg"
+  install -Dm644 "$startdir/dilute.desktop" "$pkgdir/usr/share/applications/dilute.desktop"
+}

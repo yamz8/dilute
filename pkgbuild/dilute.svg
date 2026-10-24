@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="14" fill="#FFD60A"/>
+  <!-- A flask, a third full: the stock diluted. -->
+  <path d="M26 12h12v4h-2v12l11 18c1.6 2.6-.3 6-3.4 6H20.4c-3.1 0-5-3.4-3.4-6l11-18V16h-2z"
+        fill="none" stroke="#111" stroke-width="3.2" stroke-linejoin="round"/>
+  <path d="M21.6 42h20.8l3 5c.6 1-.1 2-1.2 2H19.8c-1.1 0-1.8-1-1.2-2z" fill="#111"/>
+</svg>
