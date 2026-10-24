@@ -42,7 +42,7 @@ Item {
             TextField {
                 id: nameField
                 property bool acceptsSpace: true
-                Layout.preferredWidth: 280
+                Layout.preferredWidth: 260
                 placeholderText: qsTr("Recipe name")
                 text: recipe.name
                 selectByMouse: true
@@ -52,7 +52,7 @@ Item {
             }
             QuantityField {
                 id: volume
-                Layout.preferredWidth: 280
+                Layout.preferredWidth: 240
                 label: qsTr("Final volume")
                 units: page.volumeUnits
                 text: recipe.volumeText
@@ -60,6 +60,9 @@ Item {
                 onEdited: recipe.setVolume(volume.text, volume.unit)
             }
             Item { Layout.fillWidth: true }
+            Button { text: qsTr("Open"); flat: true; Material.roundedScale: theme.radius; onClicked: page.openRequested() }
+            Button { text: qsTr("Save"); flat: true; Material.roundedScale: theme.radius; onClicked: recipe.save() }
+            Button { text: qsTr("Save as preset"); flat: true; Material.roundedScale: theme.radius; onClicked: recipe.savePreset() }
             ComboBox {
                 id: presets
                 Layout.preferredWidth: 220
@@ -266,12 +269,6 @@ Item {
                 onCopyRequested: page.copyRequested()
                 onCardRequested: page.cardRequested()
 
-                RowLayout {
-                    spacing: 4
-                    Button { text: qsTr("Open"); flat: true; Material.roundedScale: theme.radius; onClicked: page.openRequested() }
-                    Button { text: qsTr("Save"); flat: true; Material.roundedScale: theme.radius; onClicked: recipe.save() }
-                    Button { text: qsTr("Save as preset"); flat: true; Material.roundedScale: theme.radius; onClicked: recipe.savePreset() }
-                }
             }
         }
     }

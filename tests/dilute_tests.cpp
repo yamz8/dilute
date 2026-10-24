@@ -213,7 +213,7 @@ private slots:
     void formatsAndParsesInTheLanguage() {
         const QLocale danish("da_DK"), german("de_DE");
         QCOMPARE(Units::formatNumber(1.5, 3, danish), QString("1,50"));
-        QCOMPARE(Units::format({1500, Units::unit("µL")}, 4, german), QString("1500 µL"));
+        QCOMPARE(Units::format({1500, Units::unit("µL")}, 4, german), QString("1500\u00A0µL"));
         QCOMPARE(Units::parseNumber("0,5", danish).value(), 0.5);
         // C still works where the language uses a comma.
         QCOMPARE(Units::parseNumber("0.5", danish).value(), 0.5);
@@ -524,7 +524,7 @@ private slots:
         const QVariantMap result = backend.dilution({{"c1", formField("10", "mM")}, {"v1", formField("", "mL")},
                                                      {"c2", formField("0,5", "mM")}, {"v2", formField("50", "mL")}});
         QVERIFY2(result.value("ok").toBool(), qPrintable(result.value("error").toString()));
-        QCOMPARE(result.value("main").toString(), QString("2,50 mL"));
+        QCOMPARE(result.value("main").toString(), QString("2,50\u00A0mL"));
         QCOMPARE(result.value("values").toMap().value("v1").toMap().value("number").toString(), QString("2,50"));
         // The exact form for files stays in C.
         QCOMPARE(result.value("values").toMap().value("v1").toMap().value("serialized").toString(), QString("2.5 mL"));

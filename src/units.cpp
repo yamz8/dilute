@@ -264,7 +264,10 @@ QString formatCompact(double value, int figures, const QLocale &locale) {
 double clean(double value) { return roundSignificant(value, 12); }
 
 QString format(const Quantity &quantity, int figures, const QLocale &locale) {
-    return formatNumber(quantity.value, figures, locale) + QChar(' ') + quantity.unit.symbol;
+    // A no-break space keeps 1,00 L on one line in the window; the C locale
+    // the command line uses gets a plain space for scripts.
+    const QChar space = locale.language() == QLocale::C ? QChar(' ') : QChar(0x00A0);
+    return formatNumber(quantity.value, figures, locale) + space + quantity.unit.symbol;
 }
 
 QString formatBase(double base, Dimension dimension, int figures, const QLocale &locale) {
